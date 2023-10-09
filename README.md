@@ -32,7 +32,7 @@ qu'il faudra terminer.
 
 ## Les tâches restantes
 
-- [ ] Front : Terminer la connexion (login.php + lib/user.php)
+- [X] Front : Terminer la connexion (login.php + lib/user.php)
 - [X] Front : Terminer la création d'un compte utilisateur (inscription.php + lib/user.php).
 - [ ] Front : Terminer l'affichage d'un article front (actualite.php + lib/article.php).
 - [ ] Front : Terminer l'affichage de la liste des articles (actualite.php + lib/article.php).
