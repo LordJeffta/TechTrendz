@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
 if (isset($_POST['saveArticle'])) {
 
     //@todo Amélioration : gérer la gestion des erreurs sur les champs (champ vide etc.)
-    
+
     $fileName = null;
     // Si un fichier est envoyé
     if (isset($_FILES["file"]["tmp_name"]) && $_FILES["file"]["tmp_name"] != '') {
@@ -44,14 +44,13 @@ if (isset($_POST['saveArticle'])) {
             $fileName = uniqid() . '-' . $fileName;
 
 
-
-            /* On déplace le fichier uploadé dans notre dossier upload, dirname(__DIR__) 
+            /* On déplace le fichier uploadé dans notre dossier upload, dirname(__DIR__)
                 permet de cibler le dossier parent car on se trouve dans admin
             */
-            if (move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__)._ARTICLES_IMAGES_FOLDER_ . $fileName)) {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__) . _ARTICLES_IMAGES_FOLDER_ . $fileName)) {
                 if (isset($_POST['image'])) {
                     // On supprime l'ancienne image si on a posté une nouvelle
-                    unlink(dirname(__DIR__)._ARTICLES_IMAGES_FOLDER_ . $_POST['image']);
+                    unlink(dirname(__DIR__) . _ARTICLES_IMAGES_FOLDER_ . $_POST['image']);
                 }
             } else {
                 $errors[] = 'Le fichier n\'a pas été uploadé';
@@ -64,9 +63,11 @@ if (isset($_POST['saveArticle'])) {
         if (isset($_GET['id'])) {
             if (isset($_POST['delete_image'])) {
                 // Si on a coché la case de suppression d'image, on supprime l'image
-                unlink(dirname(__DIR__)._ARTICLES_IMAGES_FOLDER_ . $_POST['image']);
+                unlink(dirname(__DIR__) . _ARTICLES_IMAGES_FOLDER_ . $_POST['image']);
             } else {
-                $fileName = $_POST['image'];
+                if (isset($_POST["image"])) {
+                    $fileName = $_POST['image'];
+                }
             }
         }
     }
@@ -134,14 +135,16 @@ if (isset($_POST['saveArticle'])) {
             <label for="category" class="form-label">Catégorie</label>
             <select name="category_id" id="category" class="form-select">
                 <?php foreach ($categories as $category) { ?>
-                    <option value="1" <?php if (isset($article['category_id']) && $article['category_id'] == $category['id']) { ?>selected="selected" <?php }; ?>><?= $category['name'] ?></option>
+                    <option value="1"
+                            <?php if (isset($article['category_id']) && $article['category_id'] == $category['id']) { ?>selected="selected" <?php }; ?>><?= $category['name'] ?></option>
                 <?php } ?>
             </select>
         </div>
 
         <?php if (isset($_GET['id']) && isset($article['image'])) { ?>
             <p>
-                <img src="<?= _ARTICLES_IMAGES_FOLDER_ . $article['image'] ?>" alt="<?= $article['title'] ?>" width="100">
+                <img src="<?= _ARTICLES_IMAGES_FOLDER_ . $article['image'] ?>" alt="<?= $article['title'] ?>"
+                     width="100">
                 <label for="delete_image">Supprimer l'image</label>
                 <input type="checkbox" name="delete_image" id="delete_image">
                 <input type="hidden" name="image" value="<?= $article['image']; ?>">

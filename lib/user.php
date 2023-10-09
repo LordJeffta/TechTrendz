@@ -9,7 +9,6 @@ function addUser(PDO $pdo, string $first_name, string $last_name, string $email,
     $query->bindValue(":email", $email, PDO::PARAM_STR_CHAR);
     $query->bindValue(":password", password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR_CHAR);
     $query->bindValue(":role", $role, PDO::PARAM_STR_CHAR);
-    error_log($query->queryString);
     return $query->execute();
 }
 

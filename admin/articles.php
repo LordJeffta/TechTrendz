@@ -20,13 +20,13 @@ $totalPages = ceil($totalArticles / _ADMIN_ITEM_PER_PAGE_);
 
 ?>
 
-<!-- @todo coder la boucle foreach pour afficher les articles -->
 <h1 class="display-5 fw-bold text-body-emphasis">Articles</h1>
 <div class="d-flex gap-2 justify-content-left py-5">
     <a class="btn btn-primary d-inline-flex align-items-left" href="article.php">
         Ajouter un article
     </a>
 </div>
+
 <table class="table">
     <thead>
     <tr>

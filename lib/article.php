@@ -36,24 +36,23 @@ function getTotalArticles(PDO $pdo): int|bool
 function saveArticle(PDO $pdo, string $title, string $content, string|null $image, int $category_id, int $id = null): bool
 {
     if ($id === null) {
-        /*
-            @todo si id est null, alors on fait une requête d'insection
-        */
-        //$query = ...
+        $query = $pdo->prepare("INSERT INTO techtrendz.articles (category_id, title, content, image)
+            VALUES (:category_id, :title, :content, :image);");
     } else {
-        /*
-            @todo sinon, on fait un update
-        */
+        $query = $pdo->prepare("UPDATE techtrendz.articles t
+        SET t.category_id = :category_id,
+            t.title = :title,
+            t.content = :content,
+            t.image = :image
+        WHERE t.id = :id;");
+        $query->bindValue(':id', $id, $pdo::PARAM_INT);
 
-        //$query = ...
-
-        //$query->bindValue(':id', $id, $pdo::PARAM_INT);
     }
-
-    // @todo on bind toutes les valeurs communes
-
-
-    //return $query->execute();  
+    $query->bindValue(":category_id", $category_id, PDO::PARAM_STR_CHAR);
+    $query->bindValue(":title", $title, PDO::PARAM_STR_CHAR);
+    $query->bindValue(":content", $content, PDO::PARAM_STR_CHAR);
+    $query->bindValue(":image", $image, PDO::PARAM_STR_CHAR);
+    return $query->execute();
 }
 
 function deleteArticle(PDO $pdo, int $id): bool
