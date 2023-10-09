@@ -15,9 +15,9 @@ $articles = getArticles($pdo);
     <?php
     foreach ($articles as $article) {
         if ($article["image"] === null) {
-            $article["image"] = "/assets/images/default-article.jpg";
+            $article["image"] = _ASSETS_IMAGES_FOLDER_ . "default-article.jpg";
         } else {
-            $article["image"] = "/uploads/articles/" . $article["image"];
+            $article["image"] = _ARTICLES_IMAGES_FOLDER_ . $article["image"];
         }
         echo "<div class=\"col-md-4 my-2 d-flex\">
         <div class=\"card\">
