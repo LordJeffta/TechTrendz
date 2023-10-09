@@ -36,7 +36,7 @@ qu'il faudra terminer.
 - [X] Front : Terminer la création d'un compte utilisateur (inscription.php + lib/user.php).
 - [X] Front : Terminer l'affichage d'un article front (actualite.php + lib/article.php).
 - [X] Front : Terminer l'affichage de la liste des articles (actualite.php + lib/article.php).
-- [ ] Front : Terminer l'affichage des trois derniers articles sur la page d'accueil (index.php + lib/article.php).
+- [X] Front : Terminer l'affichage des trois derniers articles sur la page d'accueil (index.php + lib/article.php).
 - [ ] Admin : Terminer l'affichage de la liste des articles avec pagination (admin/articles.php + lib/article.php).
 - [ ] Admin : Terminer l'ajout d'un article (lib/article.php).
 - [ ] Admin : Terminer la suppression d'un article (lib/article.php).
