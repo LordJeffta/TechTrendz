@@ -12,7 +12,7 @@ session_start();
 
 
 function adminOnly() {
-    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin') {
+    if (!isset($_SESSION['email']) || $_SESSION['role'] != 'admin') {
         // Rediriger vers la page de connexion
         header("Location: ../login.php");
         exit();

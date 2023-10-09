@@ -10,7 +10,13 @@ require_once 'templates/header.php';
 $errors = [];
 $messages = [];
 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['role'])) {
+    if ($_SESSION["role"] == "admin") {
+        header("Location: admin/articles.php");
+        exit();
+    }
+}
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
     header("Location: index.php");
     exit();
 }
@@ -24,6 +30,12 @@ if (isset($_POST['loginUser'])) {
         $messages[] = "Utilisateur ou mot de passe incorrect";
     } else {
         $_SESSION["email"] = $user["email"];
+        $_SESSION["first_name"] = $user["first_name"];
+        $_SESSION["role"] = $user["role"];
+        if ($user["role"] == "admin") {
+            header("Location: admin/articles.php");
+            exit();
+        }
         header("Location: index.php");
         exit();
     }
