@@ -33,7 +33,8 @@ function getTotalArticles(PDO $pdo): int|bool
     return $result["total"];
 }
 
-function saveArticle(PDO $pdo, string $title, string $content, string|null $image, int $category_id, int $id = null): bool
+function saveArticle(
+    PDO $pdo, string $title, string $content, string|null $image, int $category_id, int $id = null): bool
 {
     if ($id === null) {
         $query = $pdo->prepare("INSERT INTO techtrendz.articles (category_id, title, content, image)
@@ -57,17 +58,12 @@ function saveArticle(PDO $pdo, string $title, string $content, string|null $imag
 
 function deleteArticle(PDO $pdo, int $id): bool
 {
-
-    /*
-        @todo Faire la requête de suppression
-    */
-
-    /*
+    $query = $pdo->prepare("DELETE FROM articles WHERE id = :id;");
+    $query->bindValue(":id", $id);
     $query->execute();
     if ($query->rowCount() > 0) {
         return true;
     } else {
         return false;
     }
-    */
 }

@@ -39,7 +39,7 @@ qu'il faudra terminer.
 - [X] Front : Terminer l'affichage des trois derniers articles sur la page d'accueil (index.php + lib/article.php).
 - [X] Admin : Terminer l'affichage de la liste des articles avec pagination (admin/articles.php + lib/article.php).
 - [X] Admin : Terminer l'ajout d'un article (lib/article.php).
-- [ ] Admin : Terminer la suppression d'un article (lib/article.php).
+- [X] Admin : Terminer la suppression d'un article (lib/article.php).
 
 ## Bonus
 
